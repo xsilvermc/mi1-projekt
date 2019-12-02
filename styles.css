@@ -1,0 +1,29 @@
+#maindiv {
+	background-color: #424242;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#mainCanvas {
+	height: 720px;
+	width: 1080px;
+	background-color: #969696;
+}
+
+#img1 {
+	height:225px;
+	width:185px;
+}
+
+#img2 {
+	height:225px;
+	width:185px; 
+}
+
+#jotaroHP {
+	font-size: 30px;
+}
+
+#dioHP {
+	font-size: 30px;
+}
