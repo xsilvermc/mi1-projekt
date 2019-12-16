@@ -2,43 +2,76 @@
 	<head>
 		<title>game.js</title>
 		<link rel="stylesheet" href="styles.css">
-		<script src='script.js'></script>
 		<meta charset="utf-8" />
 	</head>
 	<body bgcolor='#696969' text='#ffffff'>
-		<center>
-			<div id=maindiv>
-			<!--
-				<img src='jotaro.jpg' id=img1>
-				<img src='dio.png' id=img2>
-				<table>
+		<div class=sidediv id=leftdiv>
+			<center>
+				<img id=jojoface src=johnterryface.png>
+				<h3 id=jojoheadline>Jotaro Kujo</h3>
+				<table id=jojoTable>
 					<tr>
-						<td>
-							Jotaro's HP: 
-						</td>
-						<td id=jotaroHP>
+						<ti>
+							HP:
+						</ti>
+						<ti id=jojoHP>
 							100
-						</td>
-						<td>
-							---   ---   ---
-						</td>
-						<td>
-							DIO's HP: 
-						</td>
-						<td id=dioHP>	
-							100
-						</td>
+						</ti>
+						<ti>
+							/100
+						</ti>
 					</tr>
 				</table>
-			-->
-				<canvas id=mainCanvas>
+			</center>
+		</div>
+		<div class=sidediv id=rightdiv>
+			<center>
+				<img id=dioface src=dean-Ohface.png>
+				<h3 id=dioheadline>Dio Brando</h3>
+				<table id=dioTable>
+					<tr>
+						<ti>
+							HP:
+						</ti>
+						<ti id=dioHP>
+							100
+						</ti>
+						<ti>
+							/100
+						</ti>
+					</tr>
+				</table>
+			</center>
+		</div>
+		<center>
+			<div id=maindiv>
+				<img id=jojo src=johnterry.png style=display:none>
+				<img id=egypt src=egypt.png style=display:none>
+				<img id=dio src=dean-Oh.png style=display:none>
+				<canvas id=mainCanvas height=500px width=900px>
 				</canvas>
-			
+				<br />
+				<div id=textboxdiv>
+					<p id=line1>
+						press
+					</p>
+					<p id=line2>
+						attack to
+					</p>
+					<p id=line3>
+						start
+					</p>
+				</div>
 			</div>
-			<button onclick='punch(jotaro, dio)'>attack dio</button>
-			<button onclick='punch(dio, jotaro)'>attack jojo</button>
-			<br>
-			<button onclick='rectangle()'>rectangle</button>
+			<div id=buttonDiv>
+				<button class=button id=button1 onclick='punch(jotaro, dio)'>attack dio</button>
+				<button class=button id=button2 onclick='punch(dio, jotaro)'>attack jojo</button>
+				<button class=button id=button3 onclick='toHex(255)'>rectangle</button>
+				<button class=button id=button4 onclick='drawBattle(1)'>return</button>
+			</div>
 		</center>
+		
+
+		<script src='script.js'></script>
 	</body>
 </html>

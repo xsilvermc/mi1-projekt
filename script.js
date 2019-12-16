@@ -1,11 +1,12 @@
 class Character{
-	constructor(name, standName, hp, statusEffect, speed){
+	constructor(name, standName, standAbility, hp, statusEffect, speed){
 		this.name = name;
 		this.standName = standName;
 		this.hp = hp;
 		this.statusEffect = statusEffect;
 		this.speed = speed;
 		this.standGauge = 0;
+		this.standAbility = standAbility;
 	}
 }
 
@@ -62,9 +63,9 @@ function punchBarrage(user, target){
 	}
 }
 
-var jotaro = new Character("Jotaro", "Star Platinum", 100, "none", 5);
+var jotaro = new Character("Jotaro", "Star Platinum", "Time Stop", 100, "none", 5);
 
-var dio = new Character("DIO", "The World", 100, "none", 4);
+var dio = new Character("DIO", "The World", "Time Stop", 100, "none", 4);
 
 function newHP(target){
 	switch (target){
@@ -82,17 +83,46 @@ function newHP(target){
 			}
 			break;
 	}
-	/*
-		if(target.hp <= 0 && target.name = "Jotaro"){
-			alert("Your HP reached 0, you lose");
-		}else if(target.hp <= 0){
-			alert("Your enemy's HP reached 0, you win");
-		}
-	*/
 }
-function rectangle(){
+
+//note: vertical has to be 75% of horizontal
+
+function drawBattle(battleNo){
 	var c = document.getElementById("mainCanvas");
 	var ctx = c.getContext("2d");
-	ctx.fillStyle = "#FF0000";
-	ctx.fillRect(10, 10, 150, 75);
+	var jojo = document.getElementById("jojo");
+	var egypt = document.getElementById("egypt");
+	var dio = document.getElementById("dio");
+	ctx.drawImage(egypt, 0, 0);
+	ctx.drawImage(jojo, 50, 100);
+	ctx.drawImage(dio, 600, 100);
+	document.getElementById('line1').innerHTML = 'BATTLE HAS BEGUN';
+	document.getElementById('line2').innerHTML = "JoJo's HP: "+jotaro.hp+"/100     JoJo's ability: "+jotaro.standAbility;
 }
+
+function changeButtonColor(colorIndex){
+	for(var i = 1; i <= 4; i++){
+		var targetButton = "button" + i;
+		document.getElementById(targetButton).style.backgroundColor = buttonColor[colorIndex];
+		document.getElementById(targetButton).style.borderColor = buttonBorderColor[colorIndex];	
+	}
+	console.log("buttons changed");
+}
+
+var buttonColor = ['#69ffff','#ff69ff','#ffff69'];
+var buttonBorderColor = ['#21aaaa','#aa21aa','#aaaa21'];
+
+/*
+function toHex(decimal){
+	var first = Math.floor(decimal/16);
+	var second = decimal - (first*16);
+	console.log(encodeHex(first));
+	console.log(encodeHex(second));
+}
+
+function encodeHex(decimalDigit){
+	var hexCode = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+	var returning = hexCode[decimalDigit];
+	return returning;
+}
+*/
