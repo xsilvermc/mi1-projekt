@@ -1,0 +1,92 @@
+body {
+position: absolute;
+margin-top: 0px;
+margin-left: 0px;
+
+}
+ 
+
+
+
+
+
+ 
+
+
+
+.game-container{
+background-color: #9dc771;
+background-image: url(mitblocks.svg),url(einall-s2w2_wn21.png);
+background-repeat: no-repeat;
+width: 1536px;
+height:1006px;
+position: absolute;
+
+background-position: center;
+
+}
+.tover{
+position:absolute;
+top: 96px;
+left: 588px;
+
+}
+.tover1{
+position:absolute;
+top:  672px;
+left: 588px;
+}
+.tover2{
+position:absolute;
+top:  672px;
+left: 1160px;
+}
+.tover3{
+position:absolute;
+top:384px;
+left:872px;
+}
+.tover4{
+position:absolute;
+top:384px;
+left:272px;
+}
+.tover5{
+top: 96px;
+left: 1160px;
+position: absolute;
+}
+.haus {
+position: absulute;
+top: 0px;
+left: 0px;
+}
+
+
+
+
+
+.key{
+
+position: absolute;  /* damit die Objeckte sich frei bewegen könne ohne blockiert zu werden */
+top:180px;
+left: 198px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

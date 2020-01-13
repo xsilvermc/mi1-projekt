@@ -1,81 +1,53 @@
+<!DOCTYPE html>
+
 <html>
-	<head>
-		<title>game.js</title>
-		<link rel="stylesheet" href="styles.css">
-		<meta charset="utf-8" />
-	</head>
-	<body bgcolor='#696969' text='#ffffff'>
-		<div class=sidediv id=leftdiv>
-			<center>
-				<img id=jojoface src=johnterryface.png>
-				<h3 id=jojoheadline>Jotaro Kujo</h3>
-				<table id=jojoTable>
-					<tr>
-						<ti>
-							HP:
-						</ti>
-						<ti id=jojoHP>
-							100
-						</ti>
-						<ti>
-							/100
-						</ti>
-					</tr>
-				</table>
-			</center>
-		</div>
-		<div class=sidediv id=rightdiv>
-			<center>
-				<img id=dioface src=dean-Ohface.png>
-				<h3 id=dioheadline>Dio Brando</h3>
-				<table id=dioTable>
-					<tr>
-						<ti>
-							HP:
-						</ti>
-						<ti id=dioHP>
-							100
-						</ti>
-						<ti>
-							/100
-						</ti>
-					</tr>
-				</table>
-			</center>
-		</div>
-		<center>
-			<div id=maindiv>
-				<img id=player src=player.png style=display:none>
-				<img id=bg src=Arena_Hintergrund.png style=display:none>
-				<img id=enemy1 src=enemy1.png style=display:none>
-				<img id=enemy2 src=enemy2.png style=display:none>
-				<img id=enemy3 src=enemy3.png style=display:none>
-				<img id=enemy4 src=enemy4.png style=display:none>
-				<img id=enemy5 src=enemy5.png style=display:none>
-				<img id=enemy6 src=enemy6.png style=display:none>
-				<img id=gameover src=gameover.png style=display:none>
+<head>
+<meta charset="UTF-8">
+<meta name "viewport" content="width=device-width"; initia-scale=1.0">
+<link href="index.css" type="text/css" rel="stylesheet">
+<script src="index.js"></script>
 
-				<canvas id=mainCanvas height=500px width=900px>
-				</canvas>
-				<br />
-				<div id=textboxdiv>
-					<p id=line1>
-						
-					</p>
-					<p id=line2>
-						
-					</p>
-				</div>
-			</div>
-			<div id=buttonDiv>
-				<button class=button id=button1>Punch</button>
-				<button class=button id=button2>Throw</button>
-				<button class=button id=button3>Punch Barrage</button>
-				<button class=button id=button4 onclick='gameOver()'>Back</button>
-			</div>
-		</center>
-		
+<style>
+body{
+background-color: Lightblue;
+}
+h1 {
+color: white;
+text-align: center;
+}
+p{
+font-family: verdana;
+font-size: 20px;
 
-		<script src='script.js'></script>
-	</body>
-</html>
+
+
+}
+
+
+
+
+</style>
+</head> 
+
+
+
+<title>  Spiel   </title>	
+<meta charset="UTF-8">
+<meta name="vievport" content="width=device-width, intial-scale=1.0">
+</head>
+<body>
+<div class="game-container">
+<div class="game-objects">
+
+<div class ="key"><img src="key.png" alt="Key"> </div>
+ 
+<div class="tover"><img src="tower.png" alt="tower"> </div>
+<div class="tover1"><img src="tower.png" alt="tower"> </div>
+<div class="tover2"><img src="tower.png" alt="tower"> </div>
+<div class="tover3"><img src="tower.png" alt="tower"> </div>
+<div class="tover4"><img src="tower.png" alt="tower"> </div>
+<div class="tover5"><img src="tower.png" alt="tower"> </div>
+
+</body>
+</html>	
+	
