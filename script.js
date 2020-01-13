@@ -1,91 +1,178 @@
 class Character{
-	constructor(name, standName, standAbility, hp, statusEffect, speed){
+	constructor(name, hp){
 		this.name = name;
-		this.standName = standName;
 		this.hp = hp;
-		this.statusEffect = statusEffect;
-		this.speed = speed;
-		this.standGauge = 0;
-		this.standAbility = standAbility;
+		this.recharge = false;
 	}
 }
 
+var jotaro = new Character("Jotaro", 100);
+
+var dio = new Character("Dio", 100);
+
+var currentEnemy = dio;
+
+var actionName;
+
+window.onload = function() {
+	drawBattle(1);
+};
+
 function punch(attacker, target){
+	actionName = "punch";
+	var dmg = 8;
 	if((Math.floor((Math.random() * 100) + 1)) > 10){
 		switch (target){
 		case jotaro:
-			jotaro.hp -= 15;
+			jotaro.hp -= dmg;
 			break;
 		
 		case dio:
-			dio.hp -= 15;
+			dio.hp -= dmg;
 			break;
 		}
+		document.getElementById('line1').innerHTML = attacker.name + " used "+ actionName + "!";
 		newHP(target);
 	}else{
-		alert(attacker.name + "'s attack missed!");
+		document.getElementById('line1').innerHTML = attacker.name + "'s attack missed!";
 	}
 }
 	
 function throwObject(attacker, target){
+	actionName = "throw Object";
+	var dmg = 5;
 	if((Math.floor((Math.random() * 100) + 1)) > 5){
 		switch (target){
 		case jotaro:
-			jotaro.hp -= 10;
+			jotaro.hp -= dmg;
 			break;
 		
 		case dio:
-			dio.hp -= 10;
+			dio.hp -= dmg;
 			break;
-		}
+		}	
+		document.getElementById('line1').innerHTML = attacker.name + " used "+ actionName + "!";
 		newHP(target);
 	}else{
-		alert("The thrown object missed!");
+		document.getElementById('line1').innerHTML = attacker.name + "'s thrown object missed!";
 	}
 }
 
-function punchBarrage(user, target){
+function punchBarrage(attacker, target){
+	actionName = "Punch Barrage";
+	var hits = 0;
+	var dmg = 4;
 	for(var i = 0; i < 5; i++){
-		if((Math.floor((Math.random() * 100) + 1)) > (0 + i*8)){
+		if((Math.floor((Math.random() * 100) + 1)) > (5 + i*12)){
 			switch (target){
 				case jotaro:
-					jotaro.hp -= 8;
+					jotaro.hp -= dmg;
 					break;
 			
 				case dio:
-					dio.hp -= 8;
+					dio.hp -= dmg;
 					break;
 			}
 			newHP(target);
+			hits++;
 		}else{
-			alert(user.name + "'s attack missed!");
+			break;
 		}
 	}
+	document.getElementById('line1').innerHTML = attacker.name + " used "+ actionName + "!";
+	document.getElementById('line2').innerHTML = attacker.name + " hit " + hits + " times";
+	user.recharge = true;
 }
-
-var jotaro = new Character("Jotaro", "Star Platinum", "Time Stop", 100, "none", 5);
-
-var dio = new Character("DIO", "The World", "Time Stop", 100, "none", 4);
 
 function newHP(target){
 	switch (target){
 		case jotaro:
-			document.getElementById('jotaroHP').innerHTML = jotaro.hp;
 			if(jotaro.hp <= 0){
 				alert("Your HP reached 0, you lose");
+				jotaro.hp = 0;
 			}
+			document.getElementById('jojoHP').innerHTML = jotaro.hp;
 			break;
 		
 		case dio:
-			document.getElementById('dioHP').innerHTML = dio.hp;
 			if(dio.hp <= 0){
 				alert("Your enemy's HP reached 0, you win");
+				dio.hp = 0;
 			}
+			document.getElementById('dioHP').innerHTML = dio.hp;
 			break;
 	}
 }
 
-//note: vertical has to be 75% of horizontal
+function turn(playerAction){
+	if(!jotaro.recharge){
+		switch (playerAction){
+			case punch:
+				punch(jotaro, currentEnemy);
+				break;
+			case throwObject:
+				throwObject(jotaro, currentEnemy);
+				break;
+			case punchBarrage:
+				punchBarrage(jotaro, currentEnemy);
+				break;
+		}
+	}else{
+		document.getElementById('line1').innerHTML = "Jotaro is tired and needs to recharge!";
+		jotaro.recharge = false;
+	}
+	setTimeout(function(){
+		document.getElementById('line2').innerHTML = "";
+	}, 1990)
+	if(!dead() && !currentEnemy.recharge){
+		setTimeout(function(){
+			//insert pseudo AI here
+			var enemyAction = Math.floor(Math.random()*3)+1;
+			switch (enemyAction){
+				case 1:
+					punch(currentEnemy, jotaro);
+					break;
+				case 2:
+					throwObject(currentEnemy, jotaro);
+					break;
+				case 3:
+					punchBarrage(currentEnemy, jotaro);
+					break;
+			}
+		}, 2000);
+	}else if(!dead()){
+		setTimeout(function(){
+			document.getElementById('line1').innerHTML = currentEnemy.name + " is tired and needs to recharge!";
+			currentEnemy.recharge = false;
+		}, 2000);
+	}
+	setTimeout(function(){
+		document.getElementById('line2').innerHTML = "";
+	}, 3990);
+	setTimeout(function(){
+		document.getElementById('line1').innerHTML = 'What will Jotaro do?';
+	}, 4000);
+}
+
+function newTurn(){
+	document.getElementById('line1').innerHTML = 'What will Jotaro do?';
+}
+
+/*
+function disableButtons(){
+	document.getElementById('button1').setAttribute('onclick','console.log("do not get impatient now")');
+	document.getElementById('button2').setAttribute('onclick','console.log("do not get impatient now")');
+	document.getElementById('button3').setAttribute('onclick','console.log("do not get impatient now")');
+}
+*/
+
+var dead = function(){
+	if(currentEnemy.hp == 0){
+		return true;
+	}else{
+		return false;
+	}
+}
 
 function drawBattle(battleNo){
 	var c = document.getElementById("mainCanvas");
@@ -96,8 +183,10 @@ function drawBattle(battleNo){
 	ctx.drawImage(egypt, 0, 0);
 	ctx.drawImage(jojo, 50, 100);
 	ctx.drawImage(dio, 600, 100);
-	document.getElementById('line1').innerHTML = 'BATTLE HAS BEGUN';
-	document.getElementById('line2').innerHTML = "JoJo's HP: "+jotaro.hp+"/100     JoJo's ability: "+jotaro.standAbility;
+	document.getElementById('button1').setAttribute('onclick','turn(punch)');
+	document.getElementById('button2').setAttribute('onclick','turn(throwObject)');
+	document.getElementById('button3').setAttribute('onclick','turn(punchBarrage)');
+	newTurn();
 }
 
 function changeButtonColor(colorIndex){

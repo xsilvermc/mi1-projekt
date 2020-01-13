@@ -79,7 +79,7 @@
 	border-radius: 5px;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
+	color:#212121;
 	font-family:Arial;
 	font-size:13px;
 	font-weight:bold;
@@ -99,8 +99,8 @@
 }
 
 p {
-	color: palegreen;
+	color: #0f0f0f;
 	text-align: left;
 	margin-left: 5px;
-	line-height: 7px;
+	line-height: 11px;
 }
