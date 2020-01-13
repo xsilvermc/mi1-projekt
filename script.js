@@ -6,11 +6,11 @@ class Character{
 	}
 }
 
-var jotaro = new Character("Jotaro", 100);
+var player = new Character("player", 100);
 
-var dio = new Character("Dio", 100);
+var enemy1 = new Character("Dio", 100);
 
-var currentEnemy = dio;
+var currentEnemy = enemy1;
 
 var actionName;
 
@@ -23,12 +23,12 @@ function punch(attacker, target){
 	var dmg = 8;
 	if((Math.floor((Math.random() * 100) + 1)) > 10){
 		switch (target){
-		case jotaro:
-			jotaro.hp -= dmg;
+		case player:
+			player.hp -= dmg;
 			break;
 		
-		case dio:
-			dio.hp -= dmg;
+		case currentEnemy:
+			currentEnemy.hp -= dmg;
 			break;
 		}
 		document.getElementById('line1').innerHTML = attacker.name + " used "+ actionName + "!";
@@ -43,12 +43,12 @@ function throwObject(attacker, target){
 	var dmg = 5;
 	if((Math.floor((Math.random() * 100) + 1)) > 5){
 		switch (target){
-		case jotaro:
-			jotaro.hp -= dmg;
+		case player:
+			player.hp -= dmg;
 			break;
 		
-		case dio:
-			dio.hp -= dmg;
+		case currentEnemy:
+			currentEnemy.hp -= dmg;
 			break;
 		}	
 		document.getElementById('line1').innerHTML = attacker.name + " used "+ actionName + "!";
@@ -65,12 +65,12 @@ function punchBarrage(attacker, target){
 	for(var i = 0; i < 5; i++){
 		if((Math.floor((Math.random() * 100) + 1)) > (5 + i*12)){
 			switch (target){
-				case jotaro:
-					jotaro.hp -= dmg;
+				case player:
+					player.hp -= dmg;
 					break;
 			
-				case dio:
-					dio.hp -= dmg;
+				case currentEnemy:
+					currentEnemy.hp -= dmg;
 					break;
 			}
 			newHP(target);
@@ -81,45 +81,45 @@ function punchBarrage(attacker, target){
 	}
 	document.getElementById('line1').innerHTML = attacker.name + " used "+ actionName + "!";
 	document.getElementById('line2').innerHTML = attacker.name + " hit " + hits + " times";
-	user.recharge = true;
+	attacker.recharge = true;
 }
 
 function newHP(target){
 	switch (target){
-		case jotaro:
-			if(jotaro.hp <= 0){
+		case player:
+			if(player.hp <= 0){
 				alert("Your HP reached 0, you lose");
-				jotaro.hp = 0;
+				player.hp = 0;
 			}
-			document.getElementById('jojoHP').innerHTML = jotaro.hp;
+			document.getElementById('jojoHP').innerHTML = player.hp;
 			break;
 		
-		case dio:
-			if(dio.hp <= 0){
+		case currentEnemy:
+			if(currentEnemy.hp <= 0){
 				alert("Your enemy's HP reached 0, you win");
-				dio.hp = 0;
+				currentEnemy.hp = 0;
 			}
-			document.getElementById('dioHP').innerHTML = dio.hp;
+			document.getElementById('dioHP').innerHTML = currentEnemy.hp;
 			break;
 	}
 }
 
 function turn(playerAction){
-	if(!jotaro.recharge){
+	if(!player.recharge){
 		switch (playerAction){
 			case punch:
-				punch(jotaro, currentEnemy);
+				punch(player, currentEnemy);
 				break;
 			case throwObject:
-				throwObject(jotaro, currentEnemy);
+				throwObject(player, currentEnemy);
 				break;
 			case punchBarrage:
-				punchBarrage(jotaro, currentEnemy);
+				punchBarrage(player, currentEnemy);
 				break;
 		}
 	}else{
-		document.getElementById('line1').innerHTML = "Jotaro is tired and needs to recharge!";
-		jotaro.recharge = false;
+		document.getElementById('line1').innerHTML = "player is tired and needs to recharge!";
+		player.recharge = false;
 	}
 	setTimeout(function(){
 		document.getElementById('line2').innerHTML = "";
@@ -130,13 +130,13 @@ function turn(playerAction){
 			var enemyAction = Math.floor(Math.random()*3)+1;
 			switch (enemyAction){
 				case 1:
-					punch(currentEnemy, jotaro);
+					punch(currentEnemy, player);
 					break;
 				case 2:
-					throwObject(currentEnemy, jotaro);
+					throwObject(currentEnemy, player);
 					break;
 				case 3:
-					punchBarrage(currentEnemy, jotaro);
+					punchBarrage(currentEnemy, player);
 					break;
 			}
 		}, 2000);
@@ -150,12 +150,39 @@ function turn(playerAction){
 		document.getElementById('line2').innerHTML = "";
 	}, 3990);
 	setTimeout(function(){
-		document.getElementById('line1').innerHTML = 'What will Jotaro do?';
+		document.getElementById('line1').innerHTML = 'What will player do?';
 	}, 4000);
 }
 
 function newTurn(){
-	document.getElementById('line1').innerHTML = 'What will Jotaro do?';
+	document.getElementById('line1').innerHTML = 'What will player do?';
+}
+
+function gameOver(){
+	var c = document.getElementById("mainCanvas");
+	var ctx = c.getContext("2d");
+	var text = document.getElementById("gameover");
+	ctx.fillRect(0,0,900,500);
+	ctx.drawImage(text, 320, 200);
+	document.getElementById('line1').innerHTML = "Press any button to try again";
+	document.getElementById('button1').setAttribute('onclick','reload()');
+	document.getElementById('button2').setAttribute('onclick','reload()');
+	document.getElementById('button3').setAttribute('onclick','reload()');
+
+}
+
+function reload(){
+	player.hp = 100;
+	newHP(player);
+	currentEnemy.hp = 100;
+	newHP(currentEnemy);
+	drawBattle(currentBattle);
+	console.log(currentBattle);
+}
+
+var currentBattle = function(){
+	var parameters = location.search.substring(1).split("&");
+	return parameters;
 }
 
 /*
@@ -177,12 +204,12 @@ var dead = function(){
 function drawBattle(battleNo){
 	var c = document.getElementById("mainCanvas");
 	var ctx = c.getContext("2d");
-	var jojo = document.getElementById("jojo");
-	var egypt = document.getElementById("egypt");
-	var dio = document.getElementById("dio");
-	ctx.drawImage(egypt, 0, 0);
-	ctx.drawImage(jojo, 50, 100);
-	ctx.drawImage(dio, 600, 100);
+	var player = document.getElementById("player");
+	var bg = document.getElementById("bg");
+	var enemy = document.getElementById("enemy1");
+	ctx.drawImage(bg, 0, 0);
+	ctx.drawImage(player, 50, 100);
+	ctx.drawImage(enemy, 600, 100);
 	document.getElementById('button1').setAttribute('onclick','turn(punch)');
 	document.getElementById('button2').setAttribute('onclick','turn(throwObject)');
 	document.getElementById('button3').setAttribute('onclick','turn(punchBarrage)');
@@ -197,21 +224,3 @@ function changeButtonColor(colorIndex){
 	}
 	console.log("buttons changed");
 }
-
-var buttonColor = ['#69ffff','#ff69ff','#ffff69'];
-var buttonBorderColor = ['#21aaaa','#aa21aa','#aaaa21'];
-
-/*
-function toHex(decimal){
-	var first = Math.floor(decimal/16);
-	var second = decimal - (first*16);
-	console.log(encodeHex(first));
-	console.log(encodeHex(second));
-}
-
-function encodeHex(decimalDigit){
-	var hexCode = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
-	var returning = hexCode[decimalDigit];
-	return returning;
-}
-*/
