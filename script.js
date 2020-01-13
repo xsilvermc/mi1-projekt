@@ -208,7 +208,7 @@ function drawBattle(battleNo){
 	var bg = document.getElementById("bg");
 	var enemy = document.getElementById("enemy1");
 	ctx.drawImage(bg, 0, 0);
-	ctx.drawImage(player, 50, 100);
+	ctx.drawImage(player, 50, 150);
 	ctx.drawImage(enemy, 600, 100);
 	document.getElementById('button1').setAttribute('onclick','turn(punch)');
 	document.getElementById('button2').setAttribute('onclick','turn(throwObject)');
