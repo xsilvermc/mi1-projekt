@@ -34,7 +34,7 @@ function punch(attacker, target){
 		document.getElementById('line1').innerHTML = attacker.name + " used "+ actionName + "!";
 		newHP(target);
 	}else{
-		document.getElementById('line1').innerHTML = attacker.name + "'s attack missed!";
+		document.getElementById('line1').innerHTML = attacker.name + "'s attack missed!"; 
 	}
 }
 	
