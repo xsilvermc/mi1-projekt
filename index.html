@@ -5,76 +5,93 @@
 		<meta charset="utf-8" />
 	</head>
 	<body bgcolor='#696969' text='#ffffff'>
-		<div class=sidediv id=leftdiv>
-			<center>
-				<img id=jojoface src=johnterryface.png>
-				<h3 id=jojoheadline>Jotaro Kujo</h3>
-				<table id=jojoTable>
-					<tr>
-						<ti>
-							HP:
-						</ti>
-						<ti id=jojoHP>
-							100
-						</ti>
-						<ti>
-							/100
-						</ti>
-					</tr>
-				</table>
-			</center>
-		</div>
-		<div class=sidediv id=rightdiv>
-			<center>
-				<img id=dioface src=dean-Ohface.png>
-				<h3 id=dioheadline>Dio Brando</h3>
-				<table id=dioTable>
-					<tr>
-						<ti>
-							HP:
-						</ti>
-						<ti id=dioHP>
-							100
-						</ti>
-						<ti>
-							/100
-						</ti>
-					</tr>
-				</table>
-			</center>
-		</div>
-		<center>
-			<div id=maindiv>
-				<img id=player src=player.png style=display:none>
-				<img id=bg src=Arena_Hintergrund.png style=display:none>
-				<img id=enemy1 src=enemy1.png style=display:none>
-				<img id=enemy2 src=enemy2.png style=display:none>
-				<img id=enemy3 src=enemy3.png style=display:none>
-				<img id=enemy4 src=enemy4.png style=display:none>
-				<img id=enemy5 src=enemy5.png style=display:none>
-				<img id=enemy6 src=enemy6.png style=display:none>
-				<img id=gameover src=gameover.png style=display:none>
-
-				<canvas id=mainCanvas height=500px width=900px>
-				</canvas>
-				<br />
-				<div id=textboxdiv>
-					<p id=line1>
-						
-					</p>
-					<p id=line2>
-						
-					</p>
-				</div>
-			</div>
-			<div id=buttonDiv>
-				<button class=button id=button1>Punch</button>
-				<button class=button id=button2>Throw</button>
-				<button class=button id=button3>Punch Barrage</button>
-				<button class=button id=button4 onclick='gameOver()'>Back</button>
-			</div>
-		</center>
 		
+		<img id=player src=player.png style=display:none>
+		<img id=bg src=Arena_Hintergrund.png style=display:none>
+		<img id=enemy1 src=enemy1.png style=display:none>
+		<img id=enemy2 src=enemy2.png style=display:none>
+		<img id=enemy3 src=enemy3.png style=display:none>
+		<img id=enemy4 src=enemy4.png style=display:none>
+		<img id=enemy5 src=enemy5.png style=display:none>
+		<img id=enemy6 src=enemy6.png style=display:none>
+		<img id=gameover src=gameover.png style=display:none>
+		<img id=victory src=victory.png style=display:none>
+		<img id=map src=map.png style=display:none>
+		<img id=path src=path.png style=display:none>
+		<img id=castle src=castle.png style=display:none>
+
+		<div id=mapDiv>
+			<center>
+				
+					<!--<canvas id=mapCanvas height=700 width=1400 onclick='levelSelect()'>
+					</canvas>-->
+				
+				<img src=map.png onclick="alert()">
+			</center>
+		</div>
+
+		<div id=battleDiv style=display:none>
+			<div class=sidediv id=leftdiv>
+				<center>
+					<img id=playerFace src=player.png>
+					<h3 id=playerHeadline>PLAYER</h3>
+					<table id=playerTable>
+						<tr>
+							<ti>
+								HP:
+							</ti>
+							<ti id=jojoHP>
+								100
+							</ti>
+							<ti>
+								/100
+							</ti>
+						</tr>
+					</table>
+				</center>
+			</div>
+			<div class=sidediv id=rightdiv>
+				<center>
+					<img id=enemyFace src=enemy1.png>
+					<h3 id=enemyHeadline>ENEMY</h3>
+					<table id=enemyTable>
+						<tr>
+							<ti>
+								HP:
+							</ti>
+							<ti id=dioHP>
+								100
+							</ti>
+							<ti>
+								/100
+							</ti>
+						</tr>
+					</table>
+				</center>
+			</div>
+
+			<center>
+				<div id=maindiv>
+					<canvas id=mainCanvas height=500px width=900px>
+					</canvas>
+					<br />
+					<div id=textboxdiv>
+						<p id=line1>
+							
+						</p>
+						<p id=line2>
+							
+						</p>
+					</div>
+				</div>
+				<div id=buttonDiv>
+					<button class=button id=button1>Punch</button>
+					<button class=button id=button2>Throw</button>
+					<button class=button id=button3>Punch Barrage</button>
+					<button class=button id=button4 onclick='outputXY()'>Back</button>
+				</div>
+			</center>
+		</div>
 
 		<script src='script.js'></script>
 	</body>

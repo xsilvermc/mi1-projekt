@@ -1,0 +1,56 @@
+body {
+position: absolute;
+margin-top: 0px;
+margin-left: 0px;
+}
+
+.game-container{
+background-color: #9dc771;
+background-image: url(path.png),url(map.jpeg);
+background-repeat: no-repeat;
+width: 1536px;
+height:1006px;
+position: absolute;
+background-position: center;
+}
+.tower{
+position:absolute;
+top: 96px;
+left: 588px;
+}
+.tower1{
+position:absolute;
+top:  672px;
+left: 588px;
+}
+.tower2{
+position:absolute;
+top:  672px;
+left: 1160px;
+}
+.tower3{
+position:absolute;
+top:384px;
+left:872px;
+}
+.tower4{
+position:absolute;
+top:384px;
+left:272px;
+}
+.tower5{
+top: 96px;
+left: 1160px;
+position: absolute;
+}
+.haus {
+position: absolute;
+top: 0px;
+left: 0px;
+}
+
+.key{
+position: absolute;  /* damit die Objeckte sich frei bewegen könne ohne blockiert zu werden */
+top:180px;
+left: 198px;
+}
