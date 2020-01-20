@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-
 <html>
 	<head>
-		<title>game.js</title>
+		<title>Castles of Secrets</title>
+		<link rel="shortcut icon" href="favicon.png" type="image/png">
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8" />
 	</head>
@@ -22,27 +21,23 @@
 		<img id=path src=path.png style=display:none>
 		<img id=castle src=castle.png style=display:none>
 
-		<div id=mapDiv>
+		<div id=mapDiv style=display:none>
 			<center>
-				
-					<!--<canvas id=mapCanvas height=700 width=1400 onclick='levelSelect()'>
-					</canvas>-->
-				
 				<img src=map.png onclick="alert()">
 			</center>
 		</div>
 
-		<div id=battleDiv style=display:none>
+		<div id=battleDiv>
 			<div class=sidediv id=leftdiv>
 				<center>
 					<img id=playerFace src=player.png>
-					<h3 id=playerHeadline>PLAYER</h3>
+					<h3 id=playerHeadline>Vado</h3>
 					<table id=playerTable>
 						<tr>
 							<ti>
 								HP:
 							</ti>
-							<ti id=jojoHP>
+							<ti id=playerHP>
 								100
 							</ti>
 							<ti>
@@ -54,14 +49,14 @@
 			</div>
 			<div class=sidediv id=rightdiv>
 				<center>
-					<img id=enemyFace src=enemy1.png>
+					<img id=enemyFace>
 					<h3 id=enemyHeadline>ENEMY</h3>
 					<table id=enemyTable>
 						<tr>
 							<ti>
 								HP:
 							</ti>
-							<ti id=dioHP>
+							<ti id=enemyHP>
 								100
 							</ti>
 							<ti>
@@ -87,61 +82,53 @@
 					</div>
 				</div>
 				<div id=buttonDiv>
-					<button class=button id=button1>Punch</button>
-					<button class=button id=button2>Throw</button>
-					<button class=button id=button3>Punch Barrage</button>
-					<button class=button id=button4 onclick='outputXY()'>Back</button>
+					<button class=button id=button1>Paragon Punch</button>
+					<button class=button id=button2>Inferno Smash</button>
+					<button class=button id=button3>Hydro Missile</button>
+					<button class=button id=button4>Blooming Blade</button>
 				</div>
 			</center>
 		</div>
-<!--
-<head>
-<meta charset="UTF-8">
-<meta name "viewport" content="width=device-width"; initia-scale=1.0">
-<link href="index.css" type="text/css" rel="stylesheet">
-<script src="index.js"></script>
+		<script src="script.js"></script>
+	<!--
+	<head>
+	<meta charset="UTF-8">
+	<meta name "viewport" content="width=device-width"; initia-scale=1.0">
+	<link href="index.css" type="text/css" rel="stylesheet">
+	<script src="index.js"></script>
 
-<style>
-body{
-background-color: Lightblue;
-}
-h1 {
-color: white;
-text-align: center;
-}
-p{
-font-family: verdana;
-font-size: 20px;
+	<style>
+	body{
+	background-color: Lightblue;
+	}
+	h1 {
+	color: white;
+	text-align: center;
+	}
+	p{
+	font-family: verdana;
+	font-size: 20px;
+	}
+	</style>
+	</head> 
 
+	<title>  Spiel   </title>	
+	<meta charset="UTF-8">
+	<meta name="vievport" content="width=device-width, intial-scale=1.0">
+	</head>
+	<body>
+	<div class="game-container">
+	<div class="game-objects">
 
+	<div class ="key"><img src="key.png" alt="Key"> </div>
+	
+	<div class="tover"><img src="tower.png" alt="tower"> </div>
+	<div class="tover1"><img src="tower.png" alt="tower"> </div>
+	<div class="tover2"><img src="tower.png" alt="tower"> </div>
+	<div class="tover3"><img src="tower.png" alt="tower"> </div>
+	<div class="tover4"><img src="tower.png" alt="tower"> </div>
+	<div class="tover5"><img src="tower.png" alt="tower"> </div>-->
 
-}
-
-
-
-
-</style>
-</head> 
-
-
-
-<title>  Spiel   </title>	
-<meta charset="UTF-8">
-<meta name="vievport" content="width=device-width, intial-scale=1.0">
-</head>
-<body>
-<div class="game-container">
-<div class="game-objects">
-
-<div class ="key"><img src="key.png" alt="Key"> </div>
- 
-<div class="tover"><img src="tower.png" alt="tower"> </div>
-<div class="tover1"><img src="tower.png" alt="tower"> </div>
-<div class="tover2"><img src="tower.png" alt="tower"> </div>
-<div class="tover3"><img src="tower.png" alt="tower"> </div>
-<div class="tover4"><img src="tower.png" alt="tower"> </div>
-<div class="tover5"><img src="tower.png" alt="tower"> </div>-->
-
-</body>
+	</body>
 </html>	
 	

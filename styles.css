@@ -2,9 +2,7 @@
 	height: 600px;
 	width: 905px;
 	border-radius: 5px;
-	border-style: solid;
-	border-color: #424242;
-	border-width: 5px;
+	background-color: #969696;
 }
 
 #leftdiv {
@@ -55,17 +53,12 @@
 	width:185px; 
 }
 
-#jojoHP {
+#playerHP {
 	font-size: 30px;
 }
 
-#dioHP {
+#enemyHP {
 	font-size: 30px;
-}
-
-#jojodesc {
-	line-height: 75px;
-	font-size: x-large;
 }
 
 .sidediv {
@@ -81,8 +74,7 @@
 
 .button {
 	box-shadow:inset 0px 1px 0px 0px #b4ff94;
-	background-color:#00ff33;
-	border:1px solid #009933;
+	border:1px solid;
 	border-radius: 5px;
 	display:inline-block;
 	cursor:pointer;
@@ -103,6 +95,26 @@
 .button:active {
 	position:relative;
 	top:1px;
+}
+
+#button1 {
+	background-color: #cc6600;
+	border-color: #cc3300;
+}
+
+#button2 {
+	background-color: #cc0000;
+	border-color: #cc0033;
+}
+
+#button3 {
+	background-color: #0066ff;
+	border-color: #0033ff;
+}
+
+#button4 {
+	background-color: #009900;
+	border-color: #006600;
 }
 
 p {

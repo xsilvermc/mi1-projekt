@@ -1,5 +1,5 @@
 class Character{
-	constructor(name, hp, xPos, yPos, id){
+	constructor(name, hp, xPos, yPos, id, element){
 		this.name = name;
 		this.hp = hp;
 		this.recharge = false;
@@ -7,32 +7,51 @@ class Character{
 		this.y = yPos;
 		this.id = id;
 		this.image = document.getElementById(id);
+		this.element = element;
 	}
 }
 
-var player = new Character("player", 100, 50, 175, "player");
+class Element{
+	constructor(weakness, resistance){
+		this.weakness = weakness;
+		this.resistance = resistance;
+		this.power = 10;
+	}
+}
 
-var enemy1 = new Character("Dio", 100, 600, 100, "enemy1");
+var player = new Character("Vado", 100, 50, 175, "player", "neutral");
 
-var enemy2 = new Character("jeff", 100, 600, 160, "enemy2");
+var enemy1 = new Character("Dio", 100, 600, 100, "enemy1", "neutral");
+var enemy2 = new Character("Bokcho", 100, 600, 160, "enemy2", "neutral");
+var enemy3 = new Character("Millek", 100, 650, 120, "enemy3", "water");
+var enemy4 = new Character("Corget", 100, 620, 65, "enemy4", "grass");
+var enemy5 = new Character("Frossot", 100, 590, 120, "enemy5", "water");
+var enemy6 = new Character("Darrek", 100, 640, 110, "enemy6", "fire");
 
-var enemy3 = new Character("john", 100, 650, 120, "enemy3");
+var currentEnemy = enemy4;
 
-var enemy4 = new Character("fred", 100, 620, 65, "enemy4");
+var rightImg = ["enemy1.png","enemy2.png","enemy3.png","enemy4.png","enemy5-portrait.png","enemy6.png"];
 
-var enemy5 = new Character("shaggy", 100, 590, 120, "enemy5");
-
-var enemy6 = new Character("scoob", 100, 640, 110, "enemy6");
-
-var currentEnemy = enemy6;
+var neutral = new Element("none", "none");
+var fire = new Element("water", "grass");
+var water = new Element("grass", "fire");
+var grass = new Element("fire", "water");
 
 var actionName;
 
+/** atk names:
+ *  neutral: Paragon Punch || Throat Chop
+ *  water: Hydro Missile   || Muddy Duster
+ *  fire:  Inferno Smash   || Foul Flare
+ *  grass: Blooming Blade  || Solar Pulse
+ */
+
 window.onload = function() {
 	//drawMap();
-	drawBattle(1);
+	drawBattle(5);
 };
 
+/*
 function punch(attacker, target){
 	actionName = "punch";
 	var dmg = 8;
@@ -98,6 +117,108 @@ function punchBarrage(attacker, target){
 	document.getElementById('line2').innerHTML = attacker.name + " hit " + hits + " times";
 	attacker.recharge = true;
 }
+*/
+
+function neutralAttack(user){
+	switch (user){
+		case player:
+			actionName = "Paragon Punch";
+			document.getElementById('line1').innerHTML = player.name+" used Paragon Punch!";
+			currentEnemy.hp -= neutral.power;
+			newHP(currentEnemy);
+			break;
+		case currentEnemy:
+			actionName = "Throat Chop";
+			document.getElementById('line1').innerHTML = currentEnemy.name+" used Throat Chop!";
+			player.hp -= neutral.power;
+			newHP(player);
+			break;
+	}
+}
+
+function fireAttack(user){
+	var damage = fire.power;
+	switch (user){
+		case player:
+			actionName = "Inferno Smash";
+			document.getElementById('line1').innerHTML = player.name+" used Inferno Smash!";
+			if(currentEnemy.element == "water"){
+				damage /= 2;
+				document.getElementById('line2').innerHTML = "It was not very effective!";
+			}else if(currentEnemy.element == "grass"){
+				damage *= 2;
+				document.getElementById('line2').innerHTML = "It was super effective!";
+			}
+			currentEnemy.hp -= damage;
+			newHP(currentEnemy);
+			break;
+		case currentEnemy:
+			actionName = "Foul Flare";
+			document.getElementById('line1').innerHTML = currentEnemy.name+" used Foul Flare!";
+			if(currentEnemy.element == "fire"){
+				damage *= 1.5;
+			}
+			player.hp -= damage;
+			newHP(player);
+			break;
+	}
+}
+
+function waterAttack(user){
+	var damage = water.power;
+	switch (user){
+		case player:
+			actionName = "Hydro Missile";
+			document.getElementById('line1').innerHTML = player.name+" used Hydro Missile!";
+			if(currentEnemy.element == "grass"){
+				damage /= 2;
+				document.getElementById('line2').innerHTML = "It was not very effective!";
+			}else if(currentEnemy.element == "fire"){
+				damage *= 2;
+				document.getElementById('line2').innerHTML = "It was super effective!";
+			}
+			currentEnemy.hp -= damage;
+			newHP(currentEnemy);
+			break;
+		case currentEnemy:
+			actionName = "Muddy Duster";
+			document.getElementById('line1').innerHTML = currentEnemy.name+" used Muddy Duster!";
+			if(currentEnemy.element == "water"){
+				damage *= 1.5;
+			}
+			player.hp -= damage;
+			newHP(player);
+			break;
+	}
+}
+
+function grassAttack(user){
+	var damage = grass.power;
+	switch (user){
+		case player:
+			actionName = "Blooming Blade";
+			document.getElementById('line1').innerHTML = player.name+" used Blooming Blade!";
+			if(currentEnemy.element == "fire"){
+				damage /= 2; 
+				document.getElementById('line2').innerHTML = "It was not very effective!";
+			}else if(currentEnemy.element == "water"){
+				damage *= 2;
+				document.getElementById('line2').innerHTML = "It was super effective!";
+			}
+			currentEnemy.hp -= damage;
+			newHP(currentEnemy);
+			break;
+		case currentEnemy:
+			actionName = "Solar Pulse";
+			document.getElementById('line1').innerHTML = player.name+" used Solar Pulse!";
+			if(currentEnemy.element == "grass"){
+				damage *= 1.5;
+			}
+			player.hp -= damage;
+			newHP(player);
+			break;
+	}
+}
 
 function newHP(target){
 	switch (target){
@@ -106,60 +227,113 @@ function newHP(target){
 				alert("Your HP reached 0, you lose");
 				player.hp = 0;
 			}
-			document.getElementById('jojoHP').innerHTML = player.hp;
-			break;
+			document.getElementById('playerHP').innerHTML = player.hp;
+		break;
 		
 		case currentEnemy:
 			if(currentEnemy.hp <= 0){
 				alert("Your enemy's HP reached 0, you win");
 				currentEnemy.hp = 0;
 			}
-			document.getElementById('dioHP').innerHTML = currentEnemy.hp;
-			break;
+			document.getElementById('enemyHP').innerHTML = currentEnemy.hp;
+		break;
+	}
+}
+
+function getEnemyAction(){
+	var number = Math.floor((Math.random() * 20) + 1);
+	switch (currentEnemy.element){
+		case "neutral":
+			if(number <= 5){
+				return "neutral";
+			}else if(number > 5 && number <= 10){
+				return "fire";
+			}else if(number > 10 && number <= 15){
+				return "water";
+			}else if(number > 15){
+				return "grass";
+			}
+
+		case "fire":
+			if(number <= 8){
+				return "fire";
+			}else if(number <= 13){
+				return "neutral";
+			}else if(number <= 18){
+				return "grass";
+			}else{
+				return "water";
+			}
+			
+		case "water":
+			if(number <= 8){
+				return "water";
+			}else if(number <= 13){
+				return "neutral";
+			}else if(number <= 18){
+				return "fire";
+			}else{
+				return "grass";
+			}
+
+		case "grass":
+			if(number <= 8){
+				return "grass";
+			}else if(number <= 13){
+				return "neutral";
+			}else if(number <= 18){
+				return "water";
+			}else{
+				return "fire";
+			}
 	}
 }
 
 function turn(playerAction){
 	disableButtons();
-	if(!player.recharge){
+	if((Math.floor((Math.random() * 100) + 1)) >= 15){
 		switch (playerAction){
-			case punch:
-				punch(player, currentEnemy);
+			case "neutral":
+				neutralAttack(player);
 				break;
-			case throwObject:
-				throwObject(player, currentEnemy);
+			case "fire":
+				fireAttack(player);
 				break;
-			case punchBarrage:
-				punchBarrage(player, currentEnemy);
+			case "water":
+				waterAttack(player);
+				break;
+			case "grass":
+				grassAttack(player);
 				break;
 		}
 	}else{
-		document.getElementById('line1').innerHTML = "player is tired and needs to recharge!";
-		player.recharge = false;
+		document.getElementById('line1').innerHTML = player.name+"'s attack missed!"; 
 	}
 	setTimeout(function(){
 		document.getElementById('line2').innerHTML = "";
 	}, 1990)
-	if(!dead() && !currentEnemy.recharge){
+	if(!dead()&&(Math.floor((Math.random() * 100) + 1) >= 15)){
 		setTimeout(function(){
 			//insert pseudo AI here
-			var enemyAction = Math.floor(Math.random()*3)+1;
+			var enemyAction = getEnemyAction();
 			switch (enemyAction){
-				case 1:
-					punch(currentEnemy, player);
+				case "neutral":
+					neutralAttack(currentEnemy);
 					break;
-				case 2:
-					throwObject(currentEnemy, player);
+				case "fire":
+					fireAttack(currentEnemy);
 					break;
-				case 3:
-					punchBarrage(currentEnemy, player);
+				case "water":
+					waterAttack(currentEnemy);
+					break;
+				case "grass":
+					grassAttack(currentEnemy);
 					break;
 			}
 		}, 2000);
 	}else if(!dead()){
 		setTimeout(function(){
-			document.getElementById('line1').innerHTML = currentEnemy.name + " is tired and needs to recharge!";
-			currentEnemy.recharge = false;
+			document.getElementById('line1').innerHTML = currentEnemy.name+"'s attack missed!"
 		}, 2000);
 	}
 	setTimeout(function(){
@@ -171,7 +345,7 @@ function turn(playerAction){
 }
 
 function newTurn(){
-	document.getElementById('line1').innerHTML = 'What will player do?';
+	document.getElementById('line1').innerHTML = 'What will you do?';
 	enableButtons();
 }
 
@@ -185,6 +359,7 @@ function gameOver(){
 	document.getElementById('button1').setAttribute('onclick','reload()');
 	document.getElementById('button2').setAttribute('onclick','reload()');
 	document.getElementById('button3').setAttribute('onclick','reload()');
+	document.getElementById('button4').setAttribute('onclick','reload()');
 
 }
 
@@ -271,15 +446,17 @@ function drawBattle(battleNo){
 	var playerImage = document.getElementById("player");
 	var bg = document.getElementById("bg");
 	var enemyImage = document.getElementById(currentEnemy.id);
-	document.getElementById("enemyFace").src = enemyImage.src;
+	document.getElementById("enemyFace").src = rightImg[battleNo-1];
 	ctx.drawImage(bg, 0, 0);
 	drawEllipse(170);
 	drawEllipse(700);
 	ctx.drawImage(playerImage, player.x, player.y);
 	ctx.drawImage(enemyImage, currentEnemy.x, currentEnemy.y);
-	document.getElementById('button1').setAttribute('onclick','turn(punch)');
-	document.getElementById('button2').setAttribute('onclick','turn(throwObject)');
-	document.getElementById('button3').setAttribute('onclick','turn(punchBarrage)');
+	document.getElementById('enemyHeadline').innerHTML = currentEnemy.name;
+	document.getElementById('button1').setAttribute('onclick','turn("neutral")');
+	document.getElementById('button2').setAttribute('onclick','turn("fire")');
+	document.getElementById('button3').setAttribute('onclick','turn("water")');
+	document.getElementById('button4').setAttribute('onclick','turn("grass")');
 	newTurn();
 }
 
