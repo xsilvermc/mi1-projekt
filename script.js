@@ -22,11 +22,11 @@ class Element{
 var player = new Character("Vado", 100, 50, 175, "player", "neutral");
 
 var enemy1 = new Character("Dio", 100, 600, 100, "enemy1", "neutral");
-var enemy2 = new Character("Bokcho", 100, 600, 160, "enemy2", "neutral");
-var enemy3 = new Character("Millek", 100, 650, 120, "enemy3", "water");
-var enemy4 = new Character("Corget", 100, 620, 65, "enemy4", "grass");
-var enemy5 = new Character("Frossot", 100, 590, 120, "enemy5", "water");
-var enemy6 = new Character("Darrek", 100, 640, 110, "enemy6", "fire");
+var enemy2 = new Character("Bokcho", 150, 600, 160, "enemy2", "neutral");
+var enemy3 = new Character("Millek", 150, 650, 120, "enemy3", "water");
+var enemy4 = new Character("Corget", 200, 620, 65, "enemy4", "grass");
+var enemy5 = new Character("Frossot", 200, 590, 120, "enemy5", "water");
+var enemy6 = new Character("Darrek", 250, 640, 110, "enemy6", "fire");
 
 var currentEnemy = enemy4;
 
@@ -36,6 +36,8 @@ var neutral = new Element("none", "none");
 var fire = new Element("water", "grass");
 var water = new Element("grass", "fire");
 var grass = new Element("fire", "water");
+
+var battleNumber = 4;
 
 var actionName;
 
@@ -48,7 +50,7 @@ var actionName;
 
 window.onload = function() {
 	//drawMap();
-	drawBattle(5);
+	drawBattle(battleNumber);
 };
 
 /*
@@ -224,7 +226,7 @@ function newHP(target){
 	switch (target){
 		case player:
 			if(player.hp <= 0){
-				alert("Your HP reached 0, you lose");
+				gameOver();
 				player.hp = 0;
 			}
 			document.getElementById('playerHP').innerHTML = player.hp;
@@ -232,7 +234,7 @@ function newHP(target){
 		
 		case currentEnemy:
 			if(currentEnemy.hp <= 0){
-				alert("Your enemy's HP reached 0, you win");
+				victory();
 				currentEnemy.hp = 0;
 			}
 			document.getElementById('enemyHP').innerHTML = currentEnemy.hp;
@@ -378,13 +380,7 @@ function reload(){
 	newHP(player);
 	currentEnemy.hp = 100;
 	newHP(currentEnemy);
-	drawBattle(currentBattle);
-	console.log(currentBattle);
-}
-
-var currentBattle = function(){
-	var parameters = location.search.substring(1).split("&");
-	return parameters;
+	drawBattle(battleNo);
 }
 
 function disableButtons(){
@@ -416,8 +412,8 @@ function drawEllipse(xPos){
 	ctx.restore();
 }
 
-function getCurrentEnemy(battleNo){
-	switch(battleNo){
+function getCurrentEnemy(){
+	switch(battleNumber){
 		case 1:
 			currentEnemy = enemy1;
 			break;
