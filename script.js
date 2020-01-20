@@ -50,7 +50,7 @@ var actionName;
 
 window.onload = function() {
 	//drawMap();
-	drawBattle(battleNumber);
+	startBattle(battleNumber);
 };
 
 /*
@@ -435,8 +435,17 @@ function getCurrentEnemy(){
 	}
 }
 
-function drawBattle(battleNo){
+function startBattle(battleNo){
 	getCurrentEnemy(battleNo);
+	player.hp = currentEnemy.hp;
+	document.getElementById('playerMaxHp').innerHTML = "/" + player.hp;
+	document.getElementById('enemyMaxHp').innerHTML = "/" + currentEnemy.hp;
+	document.getElementById('playerHP').innerHTML = player.hp;
+	document.getElementById('enemyHP').innerHTML = currentEnemy.hp;
+	drawBattle(battleNo);
+}
+
+function drawBattle(battleNo){
 	var c = document.getElementById("mainCanvas");
 	var ctx = c.getContext("2d");
 	var playerImage = document.getElementById("player");
