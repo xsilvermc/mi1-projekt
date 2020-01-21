@@ -11,13 +11,7 @@ class Character{
 	}
 }
 
-class Element{
-	constructor(weakness, resistance){
-		this.weakness = weakness;
-		this.resistance = resistance;
-		this.power = 10;
-	}
-}
+var atkPower = 10;
 
 var player = new Character("Vado", 100, 50, 175, "player", "neutral");
 
@@ -28,16 +22,11 @@ var enemy4 = new Character("Corget", 200, 620, 65, "enemy4", "grass");
 var enemy5 = new Character("Frossot", 200, 590, 120, "enemy5", "water");
 var enemy6 = new Character("Darrek", 250, 640, 110, "enemy6", "fire");
 
-var currentEnemy = enemy4;
+var currentEnemy;
 
 var rightImg = ["enemy1.png","enemy2.png","enemy3.png","enemy4.png","enemy5-portrait.png","enemy6.png"];
 
-var neutral = new Element("none", "none");
-var fire = new Element("water", "grass");
-var water = new Element("grass", "fire");
-var grass = new Element("fire", "water");
-
-var battleNumber = 4;
+var battleNumber = 1;
 
 var actionName;
 
@@ -126,20 +115,20 @@ function neutralAttack(user){
 		case player:
 			actionName = "Paragon Punch";
 			document.getElementById('line1').innerHTML = player.name+" used Paragon Punch!";
-			currentEnemy.hp -= neutral.power;
+			currentEnemy.hp -= atkPower;
 			newHP(currentEnemy);
 			break;
 		case currentEnemy:
 			actionName = "Throat Chop";
 			document.getElementById('line1').innerHTML = currentEnemy.name+" used Throat Chop!";
-			player.hp -= neutral.power;
+			player.hp -= atkPower;
 			newHP(player);
 			break;
 	}
 }
 
 function fireAttack(user){
-	var damage = fire.power;
+	var damage = atkpower;
 	switch (user){
 		case player:
 			actionName = "Inferno Smash";
@@ -167,7 +156,7 @@ function fireAttack(user){
 }
 
 function waterAttack(user){
-	var damage = water.power;
+	var damage = atkPower;
 	switch (user){
 		case player:
 			actionName = "Hydro Missile";
@@ -195,7 +184,7 @@ function waterAttack(user){
 }
 
 function grassAttack(user){
-	var damage = grass.power;
+	var damage = atkPower;
 	switch (user){
 		case player:
 			actionName = "Blooming Blade";
@@ -436,7 +425,8 @@ function getCurrentEnemy(){
 }
 
 function startBattle(battleNo){
-	getCurrentEnemy(battleNo);
+	battleNumber = battleNo;
+	getCurrentEnemy();
 	player.hp = currentEnemy.hp;
 	document.getElementById('playerMaxHp').innerHTML = "/" + player.hp;
 	document.getElementById('enemyMaxHp').innerHTML = "/" + currentEnemy.hp;
