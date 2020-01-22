@@ -24,7 +24,7 @@ var enemy6 = new Character("Darrek", 250, 640, 110, "enemy6", "fire");
 
 var currentEnemy;
 
-var rightImg = ["enemy1.png","enemy2.png","enemy3.png","enemy4.png","enemy5-portrait.png","enemy6.png"];
+var rightImg = ["img/enemy1.png","img/enemy2.png","img/enemy3.png","img/enemy4.png","img/enemy5-portrait.png","img/enemy6.png"];
 
 var battleNumber = 1;
 
