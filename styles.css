@@ -1,3 +1,7 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 #maindiv {
 	height: 600px;
 	width: 905px;
@@ -79,7 +83,6 @@
 	display:inline-block;
 	cursor:pointer;
 	color:#212121;
-	font-family:Arial;
 	font-size:13px;
 	font-weight:bold;
 	padding:6px 12px;
@@ -126,69 +129,111 @@ p {
 
 
 .game-container{
-	background-color: #9dc771;
-	background-image: url(mitblocks.svg),url(einall-s2w2_wn21.png);
+	background-image: url(mitblocks.svg),url(img/einall-s2w2_wn21.png);
 	background-repeat: no-repeat;
 	width: 1536px;
-	height:1006px;
-	position: absolute;
-	
-	background-position: center;
-	
-	}
-	.tover{
-	position:absolute;
-	top: 96px;
-	left: 588px;
-	
-	}
-	.tover1{
+	height:1006px;	
+}
+#tower1{
 	position:absolute;
 	top:  672px;
 	left: 588px;
-	}
-	.tover2{
+	cursor: pointer;
+}
+#tower2{
 	position:absolute;
 	top:  672px;
 	left: 1160px;
-	}
-	.tover3{
+	filter: blur(2px);
+}
+#tower3{
 	position:absolute;
 	top:384px;
 	left:872px;
-	}
-	.tover4{
+	filter: blur(2px);
+}
+#tower4{
 	position:absolute;
 	top:384px;
 	left:272px;
-	}
-	.tover5{
+	filter: blur(2px);
+}
+#tower6{
 	top: 96px;
 	left: 1160px;
 	position: absolute;
-	}
-	.haus {
-	position: absulute;
-	top: 0px;
-	left: 0px;
-	}
-	
-	.key{
-	
-	position: absolute;  /* damit die Objeckte sich frei bewegen könne ohne blockiert zu werden */
-	top:180px;
-	left: 198px;
-	
-	}
-
-	.wizard {
-		position: absolute;
-		top: 708px;
-		left: 1016px;
-	}
-
-	#player-icon {
-		position: absolute;
-		top: 700px;
-		left: 280px;
-	}
+	filter: blur(2px);
+}
+#tower5{
+	position:absolute;
+	top: 96px;
+	left: 588px;
+	filter: blur(2px);	
+}
+#wizard {
+	position: absolute;
+	top: 708px;
+	left: 1016px;
+}
+#player-icon {
+	position: absolute;
+	top: 700px;
+	left: 280px;
+}
+#textbox {
+	position:absolute;
+	background-color: #AAAAAA;
+	top: 400px;
+	left: 430px;
+	height: 150px;
+	width: 723px;
+	display:none;
+}
+#mapText {
+	color: #000000;
+	text-align: center;
+	font-size: large;
+	line-height: 30px;
+}
+#startScreen{
+	background-color: #212121;
+	height: 100%;
+}
+#startText{
+	line-height: 60px;
+	color: #AAAAAA;
+	text-align: center;
+	font-size: 40px;
+}
+#continueButton{
+	box-shadow: 3px 4px 0px 0px #899599;
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#212121;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+	line-height: 50px;
+}
+#spacer{
+	line-height: 150px;
+}
+#firework{
+	height: 100%;
+	width: 100%;
+}
+#endText{
+	position: absolute;
+	top: 200px;
+	left: 400px;
+	color: #696969;
+	font-size: 80px;
+	line-height: 100px;
+	text-align: center;
+	text-shadow: 0 0 10px #FFFFFF;
+}

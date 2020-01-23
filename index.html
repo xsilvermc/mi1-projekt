@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Castles of Secrets</title>
+		<title>Castle of Secrets</title>
 		<link rel="shortcut icon" href="img/tower-gray.png" type="image/png">
 		<link rel="stylesheet" href="styles.css">
 		<meta charset="utf-8" />
@@ -17,15 +17,14 @@
 		<img id=enemy6 src=img/enemy6.png style=display:none>
 		<img id=gameover src=img/gameover.png style=display:none>
 		<img id=victory src=img/victory.png style=display:none>
+		<img id=firework src=img/firework.jpg style=display:none>
+		<p id=endText style=display:none>
+			You beat the game!
+			<br />
+			Congratulations!
+		</p>
 
-		<div id=mapDiv style=display:none>
-			<center>
-				<img src=img/map.png>
-				<img src=img/path.png>
-			</center>
-		</div>
-
-		<div id=battleDiv>
+		<div id=battleDiv style=display:none>
 			<div class=sidediv id=leftdiv>
 				<center>
 					<img id=playerFace src=img/player.png>
@@ -87,46 +86,58 @@
 				</div>
 			</center>
 		</div>
+	
+		<div class="game-container" id="gameContainer" style=display:none>
+			<div class="game-objects">
+				<div id="tower1">
+					<img src="img/tower-gray.png" alt="tower" onclick="startBattle(1)"> 
+				</div>
+				<div id="tower2">
+					<img src="img/tower-gray.png" alt="tower"> 
+				</div>
+				<div id="tower3">
+					<img src="img/tower-gray.png" alt="tower"> 
+				</div>
+				<div id="tower4">
+					<img src="img/tower-gray.png" alt="tower"> 
+				</div>
+				<div id="tower5">
+					<img src="img/tower-gray.png" alt="tower"> 
+				</div>
+				<div id="tower6">
+					<img src="img/tower-gray.png" alt="tower"> 
+				</div>
+				<div id="wizard">
+					<img src="img/wizard.png" alt="wizard" id="wizardImg">
+				</div>
+				<div id="textbox">
+					<center>
+						<p id="mapText"> 
+							Be careful, Traveller! Some of the enemies you must face have elemental powers! <br /> 
+							If they use an attack of their own element, you're really going to feel it. <br />
+							But what they do not know is that you have attacks they are weak against... <br />
+							Be safe on your journey!
+						</p>
+					</center>
+				</div>  
+				<img src=img/player-icon.png id="player-icon">
+			</div>
+		</div>
+		<div id=startScreen>
+			<br id=spacer />
+			<p id=startText>
+				You wake up in a world that seems foreign to you, one like you've never seen before. You see six towers and... a wizard?
+				Maybe he knows how you can get home? Although you have a strange feeling that the towers are going to play a role in all that.
+				But before you can talk to the wizard, you have to cross through the first tower...
+			</p>
+			<center>
+				<button id=continueButton  onclick="startGame()">
+					Click here to start
+				</button>
+			</center>
+		</div>
+
 		<script src="script.js"></script>
-	<!--
-	
-	<head>
-	<meta charset="UTF-8">
-	<meta name "viewport" content="width=device-width"; initia-scale=1.0">
-	<link href="index.css" type="text/css" rel="stylesheet">
-	<script src="index.js"></script>
-
-	<style>
-	body{
-	background-color: Lightblue;
-	}
-	h1 {
-	color: white;
-	text-align: center;
-	}
-	p{
-	font-family: verdana;
-	font-size: 20px;
-	}
-	</style>
-	</head> 
--->
-	<div class="game-container" style=display:none>
-	<div class="game-objects">
-
-	<div class ="key"><img src="key.png" alt="Key"> </div>
-	
-	<div class="tover"><img src="tower-gray.png" alt="tower"> </div>
-	<div class="tover1"><img src="tower-gray.png" alt="tower"> </div>
-	<div class="tover2"><img src="tower-gray.png" alt="tower"> </div>
-	<div class="tover3"><img src="tower-gray.png" alt="tower"> </div>
-	<div class="tover4"><img src="tower-gray.png" alt="tower"> </div>
-	<div class="tover5"><img src="tower-gray.png" alt="tower"> </div>
-	<div class="wizard"><img src="wizard.png" alt="wizard"></div>      
-	<img src=player-icon.png id="player-icon">
-	</div>
-	</div>
-	
 
 	</body>
 </html>	

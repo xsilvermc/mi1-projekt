@@ -30,7 +30,9 @@ var battleNumber = 1;
 
 var actionName;
 
-/** atk names:
+var isVictory = false;
+
+/** atk names:   <player>  ||  <enemy>
  *  neutral: Paragon Punch || Throat Chop
  *  water: Hydro Missile   || Muddy Duster
  *  fire:  Inferno Smash   || Foul Flare
@@ -39,7 +41,7 @@ var actionName;
 
 window.onload = function() {
 	//drawMap();
-	startBattle(battleNumber);
+	//startBattle(battleNumber);
 };
 
 function neutralAttack(user){
@@ -60,7 +62,7 @@ function neutralAttack(user){
 }
 
 function fireAttack(user){
-	var damage = atkpower;
+	var damage = atkPower;
 	switch (user){
 		case player:
 			actionName = "Inferno Smash";
@@ -133,7 +135,7 @@ function grassAttack(user){
 			break;
 		case currentEnemy:
 			actionName = "Solar Pulse";
-			document.getElementById('line1').innerHTML = player.name+" used Solar Pulse!";
+			document.getElementById('line1').innerHTML = currentEnemy.name+" used Solar Pulse!";
 			if(currentEnemy.element == "grass"){
 				damage *= 1.5;
 			}
@@ -155,7 +157,7 @@ function newHP(target){
 		
 		case currentEnemy:
 			if(currentEnemy.hp <= 0){
-				victory();
+				isVictory = true;
 				currentEnemy.hp = 0;
 			}
 			document.getElementById('enemyHP').innerHTML = currentEnemy.hp;
@@ -264,6 +266,9 @@ function turn(playerAction){
 	}, 3990);
 	setTimeout(function(){
 		newTurn();
+		if(isVictory){
+			victory();
+		}
 	}, 4000);
 }
 
@@ -287,13 +292,17 @@ function gameOver(){
 }
 
 function victory(){
+	isVictory = false;
 	var c = document.getElementById("mainCanvas");
 	var ctx = c.getContext("2d");
 	var text = document.getElementById("victory");
 	ctx.fillRect(0,0,900,500);
 	ctx.drawImage(text, 350, 235);
 	document.getElementById("line1").innerHTML = "Press any button to continue";
-	
+	document.getElementById('button1').setAttribute('onclick','loadMap()');
+	document.getElementById('button2').setAttribute('onclick','loadMap()');
+	document.getElementById('button3').setAttribute('onclick','loadMap()');
+	document.getElementById('button4').setAttribute('onclick','loadMap()');	
 }
 
 function reload(){
@@ -309,7 +318,7 @@ function disableButtons(){
 }
 
 function enableButtons(){
-	document.getElementById("buttonDiv").style.display = "block";
+	document.getElementById("buttonDiv").style.display = "";
 }
 
 var dead = function(){
@@ -357,6 +366,8 @@ function getCurrentEnemy(){
 }
 
 function startBattle(battleNo){
+	document.getElementById('gameContainer').style.display = 'none';
+	document.getElementById('battleDiv').style.display = 'inline';
 	battleNumber = battleNo;
 	getCurrentEnemy();
 	player.hp = currentEnemy.hp;
@@ -385,4 +396,70 @@ function drawBattle(battleNo){
 	document.getElementById('button3').setAttribute('onclick','turn("water")');
 	document.getElementById('button4').setAttribute('onclick','turn("grass")');
 	newTurn();
+}
+
+function showDialogue(){
+	document.getElementById("textbox").style.display = "inline";
+	document.getElementById("gameContainer").setAttribute('onclick',"hideDialogue()");
+}
+
+function hideDialogue(){
+	document.getElementById("textbox").style.display = "none";
+	document.getElementById("wizard").style.display = "none";
+}
+
+function loadMap(){
+	document.getElementById('gameContainer').style.display = '';
+	document.getElementById('battleDiv').style.display = 'none';
+	switch (battleNumber){
+		case 1:
+			document.getElementById("tower2").style.filter = "none";
+			document.getElementById("tower2").setAttribute('onclick',"startBattle(2)");
+			document.getElementById("tower2").style.cursor = "pointer";
+			document.getElementById("player-icon").style.left = "900px";
+			showDialogue();
+		break;
+		case 2:
+			document.getElementById("tower3").style.filter = "none";
+			document.getElementById("tower3").setAttribute("onclick","startBattle(3)");
+			document.getElementById("tower3").style.cursor = "pointer";
+			document.getElementById("player-icon").style.left = "1200px";
+			document.getElementById("player-icon").style.top = "400px";
+		break;
+		case 3:
+			document.getElementById("tower4").style.filter = "none";
+			document.getElementById("tower4").setAttribute('onclick',"startBattle(4);");
+			document.getElementById("tower4").style.cursor = "pointer";
+			document.getElementById("player-icon").style.left = "600px";
+		break;
+		case 4:
+			document.getElementById("tower5").style.filter = "none";
+			document.getElementById("tower5").setAttribute('onclick',"startBattle(5);");
+			document.getElementById("tower5").style.cursor = "pointer";
+			document.getElementById("player-icon").style.left = "280px";
+			document.getElementById("player-icon").style.top = "110px";
+		break;
+		case 5:
+			document.getElementById("tower6").style.filter = "none";
+			document.getElementById("tower6").setAttribute('onclick',"startBattle(6);");
+			document.getElementById("tower6").style.cursor = "pointer";
+			document.getElementById("player-icon").style.left = "900px";
+		break;
+		case 6:
+			document.getElementById("battleDiv").style.display = "none";
+			beatGame();
+		break;
+	}
+}
+
+function startGame(){
+	document.getElementById("startScreen").style.display = "none";
+	document.getElementById("gameContainer").style.display = "";
+}
+
+function beatGame(){
+	document.getElementById("gameContainer").style.display = "none";
+	document.getElementById("startScreen").style.display = "none";
+	document.getElementById("firework").style.display = "";
+	document.getElementById("endText").style.display = "";
 }
