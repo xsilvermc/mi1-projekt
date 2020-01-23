@@ -1,5 +1,6 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
+	overflow-x: hidden;
 }
 
 #maindiv {
@@ -129,7 +130,7 @@ p {
 
 
 .game-container{
-	background-image: url(mitblocks.svg),url(img/einall-s2w2_wn21.png);
+	background-image: url(img/gameMap.svg),url(img/einall-s2w2_wn21.png);
 	background-repeat: no-repeat;
 	width: 1536px;
 	height:1006px;	
@@ -223,7 +224,7 @@ p {
 #spacer{
 	line-height: 150px;
 }
-#firework{
+#room{
 	height: 100%;
 	width: 100%;
 }

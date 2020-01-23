@@ -460,6 +460,6 @@ function startGame(){
 function beatGame(){
 	document.getElementById("gameContainer").style.display = "none";
 	document.getElementById("startScreen").style.display = "none";
-	document.getElementById("firework").style.display = "";
+	document.getElementById("room").style.display = "";
 	document.getElementById("endText").style.display = "";
 }
