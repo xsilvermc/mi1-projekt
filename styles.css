@@ -2,36 +2,34 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	overflow-x: hidden;
 }
-
+#startScreen{
+	background-color: #212121;
+	height: 100%;
+}
+#startText{
+	line-height: 60px;
+	color: #AAAAAA;
+	text-align: center;
+	font-size: 40px;
+}
 #maindiv {
 	height: 600px;
 	width: 905px;
 	border-radius: 5px;
 	background-color: #969696;
 }
-
 #leftdiv {
 	float: left;
 }
-
 #rightdiv {
 	float: right;
 }
-
 #mainCanvas {
 	margin-top: 3px;
 	background-color: #969696;
 	border-width: 10px;
 	border-radius: 5px;
 }
-
-#mapCanvas {
-	margin-top: 3px;
-	background-color: #969696;
-	border-width: 10px;
-	border-radius: 5px;
-}
-
 #textboxdiv {
 	margin-top: 5px;
 	height: 80px;
@@ -43,29 +41,15 @@ body {
 	color: #000000;
 	background-color: #969696;
 }
-
 #buttondiv {
 	width: 900px;
 }
-
-#img1 {
-	height:225px;
-	width:185px;
-}
-
-#img2 {
-	height:225px;
-	width:185px; 
-}
-
 #playerHP {
 	font-size: 30px;
 }
-
 #enemyHP {
 	font-size: 30px;
 }
-
 .sidediv {
 	height: 600px;
 	width: 230px;
@@ -76,7 +60,6 @@ body {
 	border-color: #969696;
 	border-style: solid;
 }
-
 .button {
 	box-shadow:inset 0px 1px 0px 0px #b4ff94;
 	border:1px solid;
@@ -100,35 +83,28 @@ body {
 	position:relative;
 	top:1px;
 }
-
 #button1 {
 	background-color: #cc6600;
 	border-color: #cc3300;
 }
-
 #button2 {
 	background-color: #cc0000;
 	border-color: #cc0033;
 }
-
 #button3 {
 	background-color: #0066ff;
 	border-color: #0033ff;
 }
-
 #button4 {
 	background-color: #009900;
 	border-color: #006600;
 }
-
 p {
 	color: #0f0f0f;
 	text-align: left;
 	margin-left: 5px;
 	line-height: 11px;
 }
-
-
 .game-container{
 	background-image: url(img/gameMap.svg),url(img/einall-s2w2_wn21.png);
 	background-repeat: no-repeat;
@@ -195,16 +171,6 @@ p {
 	text-align: center;
 	font-size: large;
 	line-height: 30px;
-}
-#startScreen{
-	background-color: #212121;
-	height: 100%;
-}
-#startText{
-	line-height: 60px;
-	color: #AAAAAA;
-	text-align: center;
-	font-size: 40px;
 }
 #continueButton{
 	box-shadow: 3px 4px 0px 0px #899599;
